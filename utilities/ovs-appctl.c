@@ -101,7 +101,7 @@ Common commands:\n\
   vlog/reopen        Make the program reopen its log file\n\
 Other options:\n\
   --timeout=SECS     wait at most SECS seconds for a response\n\
-  -h, --help         Print this helpful information\n\
+  -h, --help         Print this helpful ##################information\n\
   -V, --version      Display ovs-appctl version information\n",
            program_name, program_name);
     exit(EXIT_SUCCESS);

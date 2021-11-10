@@ -4159,8 +4159,10 @@ compose_output_action__(struct xlate_ctx *ctx, ofp_port_t ofp_port,
             flow->nw_tos |= dscp;
         }
     }
-
+    printf("#################### Immediately before xport is tunnel");
+    xlate_report(ctx, OFT_DETAIL, "#################### Immediately before xport is tunnel");
     if (xport->is_tunnel) {
+        xlate_report(ctx, OFT_DETAIL, "#################is a tunnel!");
         struct in6_addr dst;
          /* Save tunnel metadata so that changes made due to
           * the Logical (tunnel) Port are not visible for any further
@@ -4200,6 +4202,8 @@ compose_output_action__(struct xlate_ctx *ctx, ofp_port_t ofp_port,
             flow->tunnel = flow_tnl; /* Restore tunnel metadata */
         }
     } else {
+        printf("xport is not tunnel ##################");
+        xlate_report(ctx, OFT_DETAIL, "xport is not tunnel ##################");
         odp_port = xport->odp_port;
         out_port = odp_port;
     }

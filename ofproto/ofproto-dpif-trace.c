@@ -404,7 +404,7 @@ parse_flow_and_packet(int argc, const char *argv[],
         }
     } else if (n_args != 2) {
         char *s = error;
-        error = xasprintf("%s (or the bridge name was omitted)", s);
+        error = xasprintf("%s (or the bridge name teeeeeeeeeeeeestwas omitted)", s);
         free(s);
         goto exit;
     } else {
@@ -749,7 +749,7 @@ ofproto_trace__(struct ofproto_dpif *ofproto, const struct flow *flow,
     /* Copy initial flow out of xin.flow.  It differs from '*flow' because
      * xlate_in_init() initializes actset_output to OFPP_UNSET. */
     struct flow initial_flow = xin.flow;
-    ds_put_cstr(output, "Flow: ");
+    ds_put_cstr(output, "##########Flow: ");
     flow_format(output, &initial_flow, NULL);
     ds_put_char(output, '\n');
 
@@ -758,7 +758,7 @@ ofproto_trace__(struct ofproto_dpif *ofproto, const struct flow *flow,
 
     oftrace_node_print_details(output, &trace, 0);
 
-    ds_put_cstr(output, "\nFinal flow: ");
+    ds_put_cstr(output, "\n#######Final flow: ");
     if (flow_equal(&initial_flow, &xin.flow)) {
         ds_put_cstr(output, "unchanged");
     } else {
@@ -766,13 +766,13 @@ ofproto_trace__(struct ofproto_dpif *ofproto, const struct flow *flow,
     }
     ds_put_char(output, '\n');
 
-    ds_put_cstr(output, "Megaflow: ");
+    ds_put_cstr(output, "################Megaflow: ");
     struct match match;
     match_init(&match, flow, &wc);
     match_format(&match, NULL, output, OFP_DEFAULT_PRIORITY);
     ds_put_char(output, '\n');
 
-    ds_put_cstr(output, "Datapath actions: ");
+    ds_put_cstr(output, "###########Datapath actions: ");
     format_odp_actions(output, odp_actions.data, odp_actions.size, NULL);
 
     if (error != XLATE_OK) {
@@ -832,7 +832,7 @@ ofproto_dpif_trace_init(void)
         return;
     }
     registered = true;
-
+    printf("################inside of ofprototrace");
     unixctl_command_register(
         "ofproto/trace",
         "{[dp_name] odp_flow | bridge br_flow} [OPTIONS...] "

@@ -9198,7 +9198,7 @@ ofproto_unixctl_list(struct unixctl_conn *conn, int argc OVS_UNUSED,
 
     ds_init(&results);
     HMAP_FOR_EACH (ofproto, hmap_node, &all_ofprotos) {
-        ds_put_format(&results, "%s\n", ofproto->name);
+        ds_put_format(&results, "testing%s\n", ofproto->name);
     }
     unixctl_command_reply(conn, ds_cstr(&results));
     ds_destroy(&results);
